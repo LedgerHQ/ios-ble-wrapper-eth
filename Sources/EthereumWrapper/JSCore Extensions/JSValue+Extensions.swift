@@ -1,6 +1,5 @@
 //
 //  JSValue+Extensions.swift
-//  JavaScriptCoreBrowserObjectModel
 //
 //  Created by Connor Grady on 11/16/17.
 //  Copyright © 2017 Connor Grady. All rights reserved.

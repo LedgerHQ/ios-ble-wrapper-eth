@@ -1,6 +1,5 @@
 //
 //  EthereumWrapper.swift
-//  EthereumWrapper
 //
 //  Created by Dante Puglisi on 7/4/22.
 //
@@ -30,8 +29,11 @@ public class EthereumWrapper {
         return jsContext
     }()
     
+    var ethInstance: JSValue?
+    
     public init() {
         injectTransportJS()
+        loadInstance()
     }
     
     fileprivate func injectTransportJS() {
@@ -47,12 +49,16 @@ public class EthereumWrapper {
         )
     }
     
-    public func getAppConfiguration(success: @escaping (([AnyHashable: Any])->()), failure: @escaping ((String)->())) {
+    fileprivate func loadInstance() {
         guard let module = jsContext.objectForKeyedSubscript("TransportModule") else { return }
         guard let transportModule = module.objectForKeyedSubscript("TransportBLEiOS") else { return }
         guard let transportInstance = transportModule.construct(withArguments: []) else { return }
         guard let ethModule = module.objectForKeyedSubscript("Eth") else { return }
-        guard let ethInstance = ethModule.construct(withArguments: [transportInstance]) else { return }
+        ethInstance = ethModule.construct(withArguments: [transportInstance])
+    }
+    
+    public func getAppConfiguration(success: @escaping (([AnyHashable: Any])->()), failure: @escaping ((String)->())) {
+        guard let ethInstance = ethInstance else { failure("Instance not initialized"); return }
         ethInstance.invokeMethodAsync("getAppConfiguration", withArguments: [], completionHandler: { resolve, reject in
             if let resolve = resolve {
                 if let dict = resolve.toDictionary() {
@@ -65,15 +71,19 @@ public class EthereumWrapper {
             }
         })
     }
-}
-
-enum PubKeyDisplayMode: Int {
-    case long = 0
-    case short = 1
-}
-
-public struct AppConfig {
-    let blindSigningEnabled: Bool
-    let pubKeyDisplayMode: PubKeyDisplayMode
-    let version: String
+    
+    public func signTransaction(path: String, rawTxHex: String, success: @escaping (([AnyHashable: Any])->()), failure: @escaping ((String)->())) {
+        guard let ethInstance = ethInstance else { failure("Instance not initialized"); return }
+        ethInstance.invokeMethodAsync("signTransaction", withArguments: [path, rawTxHex], completionHandler: { resolve, reject in
+            if let resolve = resolve {
+                if let dict = resolve.toDictionary() {
+                    success(dict)
+                } else {
+                    failure("Resolved but couldn't parse")
+                }
+            } else if let reject = reject {
+                failure("REJECTED. Value: \(reject)")
+            }
+        })
+    }
 }

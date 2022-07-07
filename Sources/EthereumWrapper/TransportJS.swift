@@ -1,6 +1,5 @@
 //
 //  TransportJS.swift
-//  EthereumWrapper
 //
 //  Created by Dante Puglisi on 7/4/22.
 //
