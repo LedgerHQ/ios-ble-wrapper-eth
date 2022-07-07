@@ -1,0 +1,23 @@
+{
+  "pins" : [
+    {
+      "identity" : "bluejay",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/DantePuglisi/bluejay",
+      "state" : {
+        "branch" : "fail-when-wrong-characteristic-property",
+        "revision" : "ceba79e911449d7ab29aa234d749962befbc9d16"
+      }
+    },
+    {
+      "identity" : "hw-transport-ios-ble",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/LedgerHQ/hw-transport-ios-ble",
+      "state" : {
+        "branch" : "main",
+        "revision" : "074f1e68bcb165d0da70a2955e2f95b81c8c1acf"
+      }
+    }
+  ],
+  "version" : 2
+}
