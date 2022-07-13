@@ -72,9 +72,54 @@ public class EthereumWrapper {
         })
     }
     
+    public func getAddress(path: String, boolDisplay: Bool, boolChaincode: Bool, success: @escaping (([String: String])->()), failure: @escaping ((String)->())) {
+        guard let ethInstance = ethInstance else { failure("Instance not initialized"); return }
+        ethInstance.invokeMethodAsync("getAddress", withArguments: [path, boolDisplay, boolChaincode], completionHandler: { resolve, reject in
+            if let resolve = resolve {
+                if let dict = resolve.toDictionary() as? [String: String] {
+                    success(dict)
+                } else {
+                    failure("Resolved but couldn't parse")
+                }
+            } else if let reject = reject {
+                failure("REJECTED. Value: \(reject)")
+            }
+        })
+    }
+    
     public func signTransaction(path: String, rawTxHex: String, success: @escaping (([AnyHashable: Any])->()), failure: @escaping ((String)->())) {
         guard let ethInstance = ethInstance else { failure("Instance not initialized"); return }
         ethInstance.invokeMethodAsync("signTransaction", withArguments: [path, rawTxHex], completionHandler: { resolve, reject in
+            if let resolve = resolve {
+                if let dict = resolve.toDictionary() {
+                    success(dict)
+                } else {
+                    failure("Resolved but couldn't parse")
+                }
+            } else if let reject = reject {
+                failure("REJECTED. Value: \(reject)")
+            }
+        })
+    }
+    
+    public func signPersonalMessage(path: String, messageHex: String, success: @escaping (([AnyHashable: Any])->()), failure: @escaping ((String)->())) {
+        guard let ethInstance = ethInstance else { failure("Instance not initialized"); return }
+        ethInstance.invokeMethodAsync("signPersonalMessage", withArguments: [path, messageHex], completionHandler: { resolve, reject in
+            if let resolve = resolve {
+                if let dict = resolve.toDictionary() {
+                    success(dict)
+                } else {
+                    failure("Resolved but couldn't parse")
+                }
+            } else if let reject = reject {
+                failure("REJECTED. Value: \(reject)")
+            }
+        })
+    }
+    
+    public func signEIP712HashedMessage(path: String, domainSeparatorHex: String, hashStructMessageHex: String, success: @escaping (([AnyHashable: Any])->()), failure: @escaping ((String)->())) {
+        guard let ethInstance = ethInstance else { failure("Instance not initialized"); return }
+        ethInstance.invokeMethodAsync("signEIP712HashedMessage", withArguments: [path, domainSeparatorHex, hashStructMessageHex], completionHandler: { resolve, reject in
             if let resolve = resolve {
                 if let dict = resolve.toDictionary() {
                     success(dict)
