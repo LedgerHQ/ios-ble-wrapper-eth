@@ -15,11 +15,13 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/LedgerHQ/hw-transport-ios-ble", branch: "main"),
+        .package(url: "https://github.com/LedgerHQ/ios-ble-wrapper", branch: "main"),
     ],
     targets: [
         .target(
             name: "EthereumWrapper",
-            dependencies: [.product(name: "BleTransport", package: "hw-transport-ios-ble")],
+            dependencies: [.product(name: "BleTransport", package: "hw-transport-ios-ble"),
+                           .product(name: "BleWrapper", package: "ios-ble-wrapper")],
             resources: [.copy("JavaScript/bundle.js")]),
         .testTarget(
             name: "EthereumWrapperTests",

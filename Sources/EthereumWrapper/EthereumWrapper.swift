@@ -6,8 +6,9 @@
 
 import Foundation
 import JavaScriptCore
+import BleWrapper
 
-public class EthereumWrapper {
+public class EthereumWrapper: BleWrapper {
     lazy var jsContext: JSContext = {
         let jsContext = JSContext()
         guard let jsContext = jsContext else { fatalError() }
@@ -31,7 +32,8 @@ public class EthereumWrapper {
     
     var ethInstance: JSValue?
     
-    public init() {
+    public override init() {
+        super.init()
         injectTransportJS()
         loadInstance()
     }
