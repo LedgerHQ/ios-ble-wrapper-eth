@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9306C896288084F700BA77CA /* EthWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 9306C895288084F700BA77CA /* EthWrapper */; };
 		930EEE852875DCBB0002BBF0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930EEE842875DCBB0002BBF0 /* AppDelegate.swift */; };
 		930EEE872875DCBB0002BBF0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930EEE862875DCBB0002BBF0 /* SceneDelegate.swift */; };
 		930EEE892875DCBB0002BBF0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930EEE882875DCBB0002BBF0 /* ViewController.swift */; };
 		930EEE8C2875DCBB0002BBF0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 930EEE8A2875DCBB0002BBF0 /* Main.storyboard */; };
 		930EEE8E2875DCBC0002BBF0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 930EEE8D2875DCBC0002BBF0 /* Assets.xcassets */; };
 		930EEE912875DCBC0002BBF0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 930EEE8F2875DCBC0002BBF0 /* LaunchScreen.storyboard */; };
-		930EEE9C2875DCF00002BBF0 /* EthereumWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 930EEE9B2875DCF00002BBF0 /* EthereumWrapper */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,7 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				930EEE9C2875DCF00002BBF0 /* EthereumWrapper in Frameworks */,
+				9306C896288084F700BA77CA /* EthWrapper in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,7 +104,7 @@
 			);
 			name = EthereumWrapperDemo;
 			packageProductDependencies = (
-				930EEE9B2875DCF00002BBF0 /* EthereumWrapper */,
+				9306C895288084F700BA77CA /* EthWrapper */,
 			);
 			productName = EthereumWrapperDemo;
 			productReference = 930EEE812875DCBB0002BBF0 /* EthereumWrapperDemo.app */;
@@ -319,6 +319,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -348,6 +349,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -385,9 +387,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		930EEE9B2875DCF00002BBF0 /* EthereumWrapper */ = {
+		9306C895288084F700BA77CA /* EthWrapper */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = EthereumWrapper;
+			productName = EthWrapper;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

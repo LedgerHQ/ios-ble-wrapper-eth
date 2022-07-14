@@ -4,14 +4,15 @@
 import PackageDescription
 
 let package = Package(
-    name: "EthereumWrapper",
+    name: "EthWrapper",
     platforms: [
         .iOS(.v13),
+        .macOS(.v12)
     ],
     products: [
         .library(
-            name: "EthereumWrapper",
-            targets: ["EthereumWrapper"]),
+            name: "EthWrapper",
+            targets: ["EthWrapper"]),
     ],
     dependencies: [
         .package(url: "https://github.com/LedgerHQ/hw-transport-ios-ble", branch: "main"),
@@ -19,12 +20,12 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "EthereumWrapper",
+            name: "EthWrapper",
             dependencies: [.product(name: "BleTransport", package: "hw-transport-ios-ble"),
                            .product(name: "BleWrapper", package: "ios-ble-wrapper")],
             resources: [.copy("JavaScript/bundle.js")]),
         .testTarget(
-            name: "EthereumWrapperTests",
-            dependencies: ["EthereumWrapper"]),
+            name: "EthWrapperTests",
+            dependencies: ["EthWrapper"]),
     ]
 )

@@ -3,10 +3,10 @@
     {
       "identity" : "bluejay",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/DantePuglisi/bluejay",
+      "location" : "https://github.com/harrisonf-ledger/bluejay",
       "state" : {
-        "branch" : "fail-when-wrong-characteristic-property",
-        "revision" : "ceba79e911449d7ab29aa234d749962befbc9d16"
+        "branch" : "multiplatform",
+        "revision" : "17cfe41aaaa9181e26eaf5eacf193c8f96b9e3d8"
       }
     },
     {
@@ -15,7 +15,7 @@
       "location" : "https://github.com/LedgerHQ/hw-transport-ios-ble",
       "state" : {
         "branch" : "main",
-        "revision" : "437f8bf54ee717e5de8de8f68517cf2092a170c7"
+        "revision" : "9c24c2a72eb5d900eb57483619ee55e3e868b148"
       }
     },
     {
@@ -24,7 +24,7 @@
       "location" : "https://github.com/LedgerHQ/ios-ble-wrapper",
       "state" : {
         "branch" : "main",
-        "revision" : "64322fabe60e687199e9a0e586c9bad8faf91f12"
+        "revision" : "863790ab8c59ed5f696e8a7c97028d63bef0648d"
       }
     }
   ],

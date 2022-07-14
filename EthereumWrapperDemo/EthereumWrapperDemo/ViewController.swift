@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import EthereumWrapper
+import EthWrapper
 import BleTransport
 
 class ViewController: UIViewController {
@@ -22,7 +22,7 @@ class ViewController: UIViewController {
             print("Device disconnected")
         } success: { connectedPeripheral in
             print("Connected to peripheral with name: \(connectedPeripheral.name)")
-            let eth = EthereumWrapper()
+            let eth = EthWrapper()
             /*eth.getAppConfiguration { response in
                 print("Response received: \(response)")
             } failure: { error in
