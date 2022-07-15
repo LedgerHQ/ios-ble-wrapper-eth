@@ -71,18 +71,6 @@ public class EthWrapper: BleWrapper {
     }
     
     public func getAppConfiguration(success: @escaping DictionaryResponse, failure: @escaping StringResponse) {
-        /*guard let ethInstance = ethInstance else { failure("Instance not initialized"); return }
-        ethInstance.invokeMethodAsync("getAppConfiguration", withArguments: [], completionHandler: { resolve, reject in
-            if let resolve = resolve {
-                if let dict = resolve.toDictionary() {
-                    success(dict)
-                } else {
-                    failure("Resolved but couldn't parse")
-                }
-            } else if let reject = reject {
-                failure("REJECTED. Value: \(reject)")
-            }
-        })*/
         invokeMethod(.getAppConfiguration, arguments: [], success: { resolve in
             if let dict = resolve.toDictionary() {
                 success(dict)
@@ -138,18 +126,6 @@ public class EthWrapper: BleWrapper {
     }
     
     public func signEIP712HashedMessage(path: String, domainSeparatorHex: String, hashStructMessageHex: String, success: @escaping DictionaryResponse, failure: @escaping StringResponse) {
-        /*guard let ethInstance = ethInstance else { failure("Instance not initialized"); return }
-        ethInstance.invokeMethodAsync("signEIP712HashedMessage", withArguments: [path, domainSeparatorHex, hashStructMessageHex], completionHandler: { resolve, reject in
-            if let resolve = resolve {
-                if let dict = resolve.toDictionary() {
-                    success(dict)
-                } else {
-                    failure("Resolved but couldn't parse")
-                }
-            } else if let reject = reject {
-                failure("REJECTED. Value: \(reject)")
-            }
-        })*/
         invokeMethod(.signEIP712HashedMessage, arguments: [path, domainSeparatorHex, hashStructMessageHex], success: { resolve in
             if let dict = resolve.toDictionary() {
                 success(dict)

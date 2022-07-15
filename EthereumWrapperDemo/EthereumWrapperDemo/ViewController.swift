@@ -11,42 +11,63 @@ import BleTransport
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var waitingForResponseLabel: UILabel!
+    @IBOutlet weak var connectionLabel: UILabel!
+    @IBOutlet weak var getAppConfigurationButton: UIButton!
+    @IBOutlet weak var getAddressButton: UIButton!
+    
     let DERIVATION_PATH_ETH = "44'/60'/0'/0/0"
     let RAW_TX_HEX_TEST = "02f90115010384773594008518abb54a008302ceed94def171fe48cf0115b1d80b88dc8eab59176fee5787084701707a11e7b8e4b2f1e6db000000000000000000000000eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee00000000000000000000000000000000000000000000000000084701707a11e700000000000000000000000000000000000000000000000029a2241af62c0000000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc200000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000001000000000000000000004de4bf58a4077c71b5699bd19287eb76beaba5361bbfc0"
+    
+    let eth = EthWrapper()
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        /// `create` connects automatically to the first discovered device so have your device ready before launching this demo
-        BleTransport.shared.create {
-            print("Device disconnected")
-        } success: { connectedPeripheral in
-            print("Connected to peripheral with name: \(connectedPeripheral.name)")
-            let eth = EthWrapper()
-            /*eth.getAppConfiguration { response in
-                print("Response received: \(response)")
+        connectionLabel.text = "Connecting..."
+        
+        func connect() {
+            self.getAppConfigurationButton.isEnabled = false
+            self.getAddressButton.isEnabled = false
+            
+            BleTransport.shared.create {
+                print("Device disconnected")
+                connect()
+                self.connectionLabel.text = "Reconnecting..."
+            } success: { connectedPeripheral in
+                self.connectionLabel.text = "Connected to \(connectedPeripheral.name)"
+                print("Connected to peripheral with name: \(connectedPeripheral.name)")
+                self.getAppConfigurationButton.isEnabled = true
+                self.getAddressButton.isEnabled = true
             } failure: { error in
-                print(error)
-            }*/
-            /*eth.signTransaction(path: self.DERIVATION_PATH_ETH, rawTxHex: self.RAW_TX_HEX_TEST) { response in
-                print(response)
-            } failure: { error in
-                print(error)
-            }*/
-            eth.getAddress(path: self.DERIVATION_PATH_ETH, boolDisplay: false, boolChaincode: false) { response in
-                print(response)
-            } failure: { error in
-                print(error)
-            }
-
-        } failure: { error in
-            if let error = error {
-                print(error.description())
-            } else {
-                print("No error")
+                if let error = error {
+                    print(error.description())
+                } else {
+                    print("No error")
+                }
             }
         }
+        
+        connect()
     }
-
+    
+    @IBAction func getAppConfigurationButtonTapped(_ sender: Any) {
+        waitingForResponseLabel.text = "Getting App Configuration..."
+        eth.getAppConfiguration { response in
+            guard let dict = response as? [String: AnyObject] else { fatalError("Can't parse") }
+            self.waitingForResponseLabel.text = "\(dict)"
+        } failure: { error in
+            self.waitingForResponseLabel.text = "ERROR: \(error)"
+        }
+    }
+    
+    @IBAction func getAddressButtonTapped(_ sender: Any) {
+        waitingForResponseLabel.text = "Getting Address..."
+        eth.getAddress(path: DERIVATION_PATH_ETH, boolDisplay: false, boolChaincode: false) { response in
+            self.waitingForResponseLabel.text = "\(response)"
+        } failure: { error in
+            self.waitingForResponseLabel.text = "ERROR: \(error)"
+        }
+    }
 }
 
