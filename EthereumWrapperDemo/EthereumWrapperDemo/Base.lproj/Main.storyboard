@@ -63,14 +63,34 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bi1-wq-fKu">
+                                <rect key="frame" x="20" y="811" width="153" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Open Ethereum app"/>
+                                <connections>
+                                    <action selector="openAppButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Nm7-0Y-HLJ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rFT-rw-woB">
+                                <rect key="frame" x="254" y="811" width="140" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Close current app"/>
+                                <connections>
+                                    <action selector="closeAppButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="du8-Ae-SjW"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Bi1-wq-fKu" secondAttribute="bottom" constant="20" id="0Bf-AE-LQt"/>
                             <constraint firstItem="9tU-0N-lvq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="HnB-6d-1P4"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9tU-0N-lvq" secondAttribute="trailing" constant="20" id="IPX-Xq-Qrj"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="rFT-rw-woB" secondAttribute="trailing" constant="20" id="XsR-el-2Y8"/>
                             <constraint firstItem="diZ-bw-5tq" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="60" id="bNJ-7H-Qzy"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="rFT-rw-woB" secondAttribute="bottom" constant="20" id="cds-7i-npD"/>
                             <constraint firstItem="32X-mH-VXj" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="cr8-BZ-Wzw"/>
+                            <constraint firstItem="Bi1-wq-fKu" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="fm2-Ox-tsy"/>
                             <constraint firstItem="diZ-bw-5tq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="gCg-mt-K6y"/>
                             <constraint firstItem="32X-mH-VXj" firstAttribute="top" secondItem="Cep-zk-9oA" secondAttribute="bottom" constant="40" id="jYD-8B-lGj"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="diZ-bw-5tq" secondAttribute="trailing" constant="20" id="mpR-mg-Xs2"/>
@@ -80,9 +100,11 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="closeAppButton" destination="rFT-rw-woB" id="CFn-T7-vF3"/>
                         <outlet property="connectionLabel" destination="diZ-bw-5tq" id="PB1-xi-jDd"/>
                         <outlet property="getAddressButton" destination="32X-mH-VXj" id="x6Z-ZW-WQF"/>
                         <outlet property="getAppConfigurationButton" destination="Cep-zk-9oA" id="FkU-x9-YKP"/>
+                        <outlet property="openAppButton" destination="Bi1-wq-fKu" id="l6Q-Lp-NNi"/>
                         <outlet property="waitingForResponseLabel" destination="9tU-0N-lvq" id="mGn-Zj-VlA"/>
                     </connections>
                 </viewController>

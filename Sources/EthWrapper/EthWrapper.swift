@@ -7,6 +7,7 @@
 import Foundation
 import JavaScriptCore
 import BleWrapper
+import BleTransport
 import os
 
 public class EthWrapper: BleWrapper {
@@ -65,6 +66,74 @@ public class EthWrapper: BleWrapper {
         ethInstance = ethModule.construct(withArguments: [transportInstance])
     }
     
+    // MARK: - Async methods
+    public func openApp() async throws {
+        return try await super.openApp("Ethereum")
+    }
+    
+    public func openAppIfNeeded() async throws {
+        return try await super.openAppIfNeeded("Ethereum")
+    }
+    
+    public func getAppConfiguration() async throws -> [AnyHashable: Any] {
+        return try await withCheckedThrowingContinuation { continuation in
+            getAppConfiguration { response in
+                continuation.resume(returning: response)
+            } failure: { error in
+                continuation.resume(throwing: BleTransportError.lowerLevelError(description: error))
+            }
+        }
+    }
+    
+    public func getAddress(path: String, boolDisplay: Bool, boolChaincode: Bool) async throws -> [AnyHashable: Any] {
+        return try await withCheckedThrowingContinuation { continuation in
+            getAddress(path: path, boolDisplay: boolDisplay, boolChaincode: boolChaincode) { response in
+                continuation.resume(returning: response)
+            } failure: { error in
+                continuation.resume(throwing: BleTransportError.lowerLevelError(description: error))
+            }
+        }
+    }
+    
+    public func signTransaction(path: String, rawTxHex: String) async throws -> [AnyHashable: Any] {
+        return try await withCheckedThrowingContinuation { continuation in
+            signTransaction(path: path, rawTxHex: rawTxHex) { response in
+                continuation.resume(returning: response)
+            } failure: { error in
+                continuation.resume(throwing: BleTransportError.lowerLevelError(description: error))
+            }
+        }
+    }
+    
+    public func signPersonalMessage(path: String, messageHex: String) async throws -> [AnyHashable: Any] {
+        return try await withCheckedThrowingContinuation { continuation in
+            signPersonalMessage(path: path, messageHex: messageHex) { response in
+                continuation.resume(returning: response)
+            } failure: { error in
+                continuation.resume(throwing: BleTransportError.lowerLevelError(description: error))
+            }
+        }
+    }
+    
+    public func signEIP712HashedMessage(path: String, domainSeparatorHex: String, hashStructMessageHex: String) async throws -> [AnyHashable: Any] {
+        return try await withCheckedThrowingContinuation { continuation in
+            signEIP712HashedMessage(path: path, domainSeparatorHex: domainSeparatorHex, hashStructMessageHex: hashStructMessageHex) { response in
+                continuation.resume(returning: response)
+            } failure: { error in
+                continuation.resume(throwing: BleTransportError.lowerLevelError(description: error))
+            }
+        }
+    }
+    
+    // MARK: - Completion methods
+    public func openApp(success: @escaping EmptyResponse, failure: @escaping ErrorResponse) {
+        super.openApp("Ethereum", success: success, failure: failure)
+    }
+    
+    public func openAppIfNeeded(completion: @escaping (Result<Void, BleTransportError>) -> Void) {
+        super.openAppIfNeeded("Ethereum", completion: completion)
+    }
+    
     public func getAppConfiguration(success: @escaping DictionaryResponse, failure: @escaping StringResponse) {
         invokeMethod(.getAppConfiguration, arguments: [], success: { resolve in
             if let dict = resolve.toDictionary() {
@@ -115,6 +184,7 @@ public class EthWrapper: BleWrapper {
         }, failure: failure)
     }
     
+    // MARK: - Private methods
     fileprivate func invokeMethod(_ method: Method, arguments: [Any], success: @escaping JSValueResponse, failure: @escaping StringResponse) {
         guard let ethInstance = ethInstance else { failure("Instance not initialized"); return }
         ethInstance.invokeMethodAsync(method.rawValue, withArguments: arguments, completionHandler: { resolve, reject in
