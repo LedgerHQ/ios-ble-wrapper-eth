@@ -39,8 +39,8 @@ public class EthWrapper: BleWrapper {
     
     var ethInstance: JSValue?
     
-    public override init() {
-        super.init()
+    public override init(connectionDelegate: BleConnectionDelegate) {
+        super.init(connectionDelegate: connectionDelegate)
         injectTransportJS()
         loadInstance()
     }
