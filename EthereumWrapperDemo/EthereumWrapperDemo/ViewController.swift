@@ -22,13 +22,7 @@ class ViewController: UIViewController {
     let DERIVATION_PATH_ETH = "44'/60'/0'/0/0"
     let RAW_TX_HEX_TEST = "02f90115010384773594008518abb54a008302ceed94def171fe48cf0115b1d80b88dc8eab59176fee5787084701707a11e7b8e4b2f1e6db000000000000000000000000eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee00000000000000000000000000000000000000000000000000084701707a11e700000000000000000000000000000000000000000000000029a2241af62c0000000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc200000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000001000000000000000000004de4bf58a4077c71b5699bd19287eb76beaba5361bbfc0"
     
-    var eth: EthWrapper?
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        eth = EthWrapper(connectionDelegate: self)
-    }
+    let eth = EthWrapper()
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -61,7 +55,7 @@ class ViewController: UIViewController {
     
     @IBAction func getAppConfigurationButtonTapped(_ sender: Any) {
         waitingForResponseLabel.text = "Getting App Configuration..."
-        eth?.getAppConfiguration { response in
+        eth.getAppConfiguration { response in
             guard let dict = response as? [String: AnyObject] else { fatalError("Can't parse") }
             self.waitingForResponseLabel.text = "\(dict)"
         } failure: { error in
@@ -71,7 +65,7 @@ class ViewController: UIViewController {
     
     @IBAction func getAddressButtonTapped(_ sender: Any) {
         waitingForResponseLabel.text = "Getting Address..."
-        eth?.getAddress(path: DERIVATION_PATH_ETH, boolDisplay: false, boolChaincode: false) { response in
+        eth.getAddress(path: DERIVATION_PATH_ETH, boolDisplay: false, boolChaincode: false) { response in
             self.waitingForResponseLabel.text = "\(response)"
         } failure: { error in
             self.waitingForResponseLabel.text = "ERROR: \(error)"
@@ -82,7 +76,7 @@ class ViewController: UIViewController {
         Task() {
             print("Will try opening Ethereum")
             do {
-                try await eth?.openAppIfNeeded()
+                try await eth.openAppIfNeeded()
                 print("Opened Ethereum!")
             } catch {
                 print("\((error as? BleTransportError)?.description() ?? "Failed with no error")")
@@ -93,19 +87,11 @@ class ViewController: UIViewController {
     @IBAction func closeAppButtonTapped(_ sender: Any) {
         Task() {
             do {
-                try await eth?.closeApp()
+                try await eth.closeApp()
                 print("Closed app!")
             } catch {
                 print("\((error as? BleTransportError)?.description() ?? "Failed with no error")")
             }
-        }
-    }
-}
-
-extension ViewController: BleConnectionDelegate {
-    func createAgainAfterDisconnect(success: @escaping EmptyResponse, failure: @escaping ErrorResponse) {
-        BleTransport.shared.notifyDisconnected { [weak self] in
-            self?.create(success: success, failure: failure)
         }
     }
 }

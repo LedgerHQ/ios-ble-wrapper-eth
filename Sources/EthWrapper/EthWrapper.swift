@@ -39,8 +39,8 @@ public class EthWrapper: BleWrapper {
     
     var ethInstance: JSValue?
     
-    public override init(connectionDelegate: BleConnectionDelegate) {
-        super.init(connectionDelegate: connectionDelegate)
+    public override init() {
+        super.init()
         injectTransportJS()
         loadInstance()
     }
@@ -66,71 +66,8 @@ public class EthWrapper: BleWrapper {
         ethInstance = ethModule.construct(withArguments: [transportInstance])
     }
     
-    // MARK: - Async methods
-    public func openApp() async throws {
-        return try await super.openApp("Ethereum")
-    }
-    
-    public func openAppIfNeeded() async throws {
-        return try await super.openAppIfNeeded("Ethereum")
-    }
-    
-    public func getAppConfiguration() async throws -> [AnyHashable: Any] {
-        return try await withCheckedThrowingContinuation { continuation in
-            getAppConfiguration { response in
-                continuation.resume(returning: response)
-            } failure: { error in
-                continuation.resume(throwing: BleTransportError.lowerLevelError(description: error))
-            }
-        }
-    }
-    
-    public func getAddress(path: String, boolDisplay: Bool, boolChaincode: Bool) async throws -> [AnyHashable: Any] {
-        return try await withCheckedThrowingContinuation { continuation in
-            getAddress(path: path, boolDisplay: boolDisplay, boolChaincode: boolChaincode) { response in
-                continuation.resume(returning: response)
-            } failure: { error in
-                continuation.resume(throwing: BleTransportError.lowerLevelError(description: error))
-            }
-        }
-    }
-    
-    public func signTransaction(path: String, rawTxHex: String) async throws -> [AnyHashable: Any] {
-        return try await withCheckedThrowingContinuation { continuation in
-            signTransaction(path: path, rawTxHex: rawTxHex) { response in
-                continuation.resume(returning: response)
-            } failure: { error in
-                continuation.resume(throwing: BleTransportError.lowerLevelError(description: error))
-            }
-        }
-    }
-    
-    public func signPersonalMessage(path: String, messageHex: String) async throws -> [AnyHashable: Any] {
-        return try await withCheckedThrowingContinuation { continuation in
-            signPersonalMessage(path: path, messageHex: messageHex) { response in
-                continuation.resume(returning: response)
-            } failure: { error in
-                continuation.resume(throwing: BleTransportError.lowerLevelError(description: error))
-            }
-        }
-    }
-    
-    public func signEIP712HashedMessage(path: String, domainSeparatorHex: String, hashStructMessageHex: String) async throws -> [AnyHashable: Any] {
-        return try await withCheckedThrowingContinuation { continuation in
-            signEIP712HashedMessage(path: path, domainSeparatorHex: domainSeparatorHex, hashStructMessageHex: hashStructMessageHex) { response in
-                continuation.resume(returning: response)
-            } failure: { error in
-                continuation.resume(throwing: BleTransportError.lowerLevelError(description: error))
-            }
-        }
-    }
-    
     // MARK: - Completion methods
-    public func openApp(success: @escaping EmptyResponse, failure: @escaping ErrorResponse) {
-        super.openApp("Ethereum", success: success, failure: failure)
-    }
-    
-    public func openAppIfNeeded(completion: @escaping (Result<Void, BleTransportError>) -> Void) {
+    public func openAppIfNeeded(completion: @escaping (Result<Void, Error>) -> Void) {
         super.openAppIfNeeded("Ethereum", completion: completion)
     }
     
@@ -194,5 +131,62 @@ public class EthWrapper: BleWrapper {
                 failure("REJECTED. Value: \(reject)")
             }
         })
+    }
+}
+
+/// Async implementations
+extension EthWrapper {
+    public func openAppIfNeeded() async throws {
+        return try await super.openAppIfNeeded("Ethereum")
+    }
+    
+    public func getAppConfiguration() async throws -> [AnyHashable: Any] {
+        return try await withCheckedThrowingContinuation { continuation in
+            getAppConfiguration { response in
+                continuation.resume(returning: response)
+            } failure: { error in
+                continuation.resume(throwing: BleTransportError.lowerLevelError(description: error))
+            }
+        }
+    }
+    
+    public func getAddress(path: String, boolDisplay: Bool, boolChaincode: Bool) async throws -> [AnyHashable: Any] {
+        return try await withCheckedThrowingContinuation { continuation in
+            getAddress(path: path, boolDisplay: boolDisplay, boolChaincode: boolChaincode) { response in
+                continuation.resume(returning: response)
+            } failure: { error in
+                continuation.resume(throwing: BleTransportError.lowerLevelError(description: error))
+            }
+        }
+    }
+    
+    public func signTransaction(path: String, rawTxHex: String) async throws -> [AnyHashable: Any] {
+        return try await withCheckedThrowingContinuation { continuation in
+            signTransaction(path: path, rawTxHex: rawTxHex) { response in
+                continuation.resume(returning: response)
+            } failure: { error in
+                continuation.resume(throwing: BleTransportError.lowerLevelError(description: error))
+            }
+        }
+    }
+    
+    public func signPersonalMessage(path: String, messageHex: String) async throws -> [AnyHashable: Any] {
+        return try await withCheckedThrowingContinuation { continuation in
+            signPersonalMessage(path: path, messageHex: messageHex) { response in
+                continuation.resume(returning: response)
+            } failure: { error in
+                continuation.resume(throwing: BleTransportError.lowerLevelError(description: error))
+            }
+        }
+    }
+    
+    public func signEIP712HashedMessage(path: String, domainSeparatorHex: String, hashStructMessageHex: String) async throws -> [AnyHashable: Any] {
+        return try await withCheckedThrowingContinuation { continuation in
+            signEIP712HashedMessage(path: path, domainSeparatorHex: domainSeparatorHex, hashStructMessageHex: hashStructMessageHex) { response in
+                continuation.resume(returning: response)
+            } failure: { error in
+                continuation.resume(throwing: BleTransportError.lowerLevelError(description: error))
+            }
+        }
     }
 }
