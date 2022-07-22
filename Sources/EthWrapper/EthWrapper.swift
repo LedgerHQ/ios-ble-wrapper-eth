@@ -71,64 +71,65 @@ public class EthWrapper: BleWrapper {
         super.openAppIfNeeded("Ethereum", completion: completion)
     }
     
-    public func getAppConfiguration(success: @escaping DictionaryResponse, failure: @escaping StringResponse) {
+    public func getAppConfiguration(success: @escaping DictionaryResponse, failure: @escaping ErrorResponse) {
         invokeMethod(.getAppConfiguration, arguments: [], success: { resolve in
             if let dict = resolve.toDictionary() {
                 success(dict)
             } else {
-                failure("Resolved but couldn't parse")
+                failure(BleTransportError.lowerLevelError(description: "getAppConfiguration -> resolved but couldn't parse"))
             }
         }, failure: failure)
     }
     
-    public func getAddress(path: String, boolDisplay: Bool, boolChaincode: Bool, success: @escaping DictionaryResponse, failure: @escaping StringResponse) {
+    public func getAddress(path: String, boolDisplay: Bool, boolChaincode: Bool, success: @escaping DictionaryResponse, failure: @escaping ErrorResponse) {
         invokeMethod(.getAddress, arguments: [path, boolDisplay, boolChaincode], success: { resolve in
             if let dict = resolve.toDictionary() as? [String: String] {
                 success(dict)
             } else {
-                failure("Resolved but couldn't parse")
+                failure(BleTransportError.lowerLevelError(description: "getAddress -> resolved but couldn't parse"))
             }
         }, failure: failure)
     }
     
-    public func signTransaction(path: String, rawTxHex: String, success: @escaping DictionaryResponse, failure: @escaping StringResponse) {
+    public func signTransaction(path: String, rawTxHex: String, success: @escaping DictionaryResponse, failure: @escaping ErrorResponse) {
         invokeMethod(.signTransaction, arguments: [path, rawTxHex], success: { resolve in
             if let dict = resolve.toDictionary() {
                 success(dict)
             } else {
-                failure("Resolved but couldn't parse")
+                failure(BleTransportError.lowerLevelError(description: "signTransaction -> resolved but couldn't parse"))
             }
         }, failure: failure)
     }
     
-    public func signPersonalMessage(path: String, messageHex: String, success: @escaping DictionaryResponse, failure: @escaping StringResponse) {
+    public func signPersonalMessage(path: String, messageHex: String, success: @escaping DictionaryResponse, failure: @escaping ErrorResponse) {
         invokeMethod(.signPersonalMessage, arguments: [path, messageHex], success: { resolve in
             if let dict = resolve.toDictionary() {
                 success(dict)
             } else {
-                failure("Resolved but couldn't parse")
+                failure(BleTransportError.lowerLevelError(description: "signPersonalMessage -> resolved but couldn't parse"))
             }
         }, failure: failure)
     }
     
-    public func signEIP712HashedMessage(path: String, domainSeparatorHex: String, hashStructMessageHex: String, success: @escaping DictionaryResponse, failure: @escaping StringResponse) {
+    public func signEIP712HashedMessage(path: String, domainSeparatorHex: String, hashStructMessageHex: String, success: @escaping DictionaryResponse, failure: @escaping ErrorResponse) {
         invokeMethod(.signEIP712HashedMessage, arguments: [path, domainSeparatorHex, hashStructMessageHex], success: { resolve in
             if let dict = resolve.toDictionary() {
                 success(dict)
             } else {
-                failure("Resolved but couldn't parse")
+                failure(BleTransportError.lowerLevelError(description: "signEIP712HashedMessage -> resolved but couldn't parse"))
             }
         }, failure: failure)
     }
     
     // MARK: - Private methods
-    fileprivate func invokeMethod(_ method: Method, arguments: [Any], success: @escaping JSValueResponse, failure: @escaping StringResponse) {
-        guard let ethInstance = ethInstance else { failure("Instance not initialized"); return }
-        ethInstance.invokeMethodAsync(method.rawValue, withArguments: arguments, completionHandler: { resolve, reject in
+    fileprivate func invokeMethod(_ method: Method, arguments: [Any], success: @escaping JSValueResponse, failure: @escaping ErrorResponse) {
+        guard let ethInstance = ethInstance else { failure(BleTransportError.lowerLevelError(description: "invokeMethod -> instance not initialized")); return }
+        ethInstance.invokeMethodAsync(method.rawValue, withArguments: arguments, completionHandler: { [weak self] resolve, reject in
+            guard let self = self else { failure(BleTransportError.lowerLevelError(description: "invokeMethod -> self is nil")); return }
             if let resolve = resolve {
                 success(resolve)
             } else if let reject = reject {
-                failure("REJECTED. Value: \(reject)")
+                failure(self.jsValueAsError(reject))
             }
         })
     }
@@ -145,7 +146,7 @@ extension EthWrapper {
             getAppConfiguration { response in
                 continuation.resume(returning: response)
             } failure: { error in
-                continuation.resume(throwing: BleTransportError.lowerLevelError(description: error))
+                continuation.resume(throwing: error)
             }
         }
     }
@@ -155,7 +156,7 @@ extension EthWrapper {
             getAddress(path: path, boolDisplay: boolDisplay, boolChaincode: boolChaincode) { response in
                 continuation.resume(returning: response)
             } failure: { error in
-                continuation.resume(throwing: BleTransportError.lowerLevelError(description: error))
+                continuation.resume(throwing: error)
             }
         }
     }
@@ -165,7 +166,7 @@ extension EthWrapper {
             signTransaction(path: path, rawTxHex: rawTxHex) { response in
                 continuation.resume(returning: response)
             } failure: { error in
-                continuation.resume(throwing: BleTransportError.lowerLevelError(description: error))
+                continuation.resume(throwing: error)
             }
         }
     }
@@ -175,7 +176,7 @@ extension EthWrapper {
             signPersonalMessage(path: path, messageHex: messageHex) { response in
                 continuation.resume(returning: response)
             } failure: { error in
-                continuation.resume(throwing: BleTransportError.lowerLevelError(description: error))
+                continuation.resume(throwing: error)
             }
         }
     }
@@ -185,7 +186,7 @@ extension EthWrapper {
             signEIP712HashedMessage(path: path, domainSeparatorHex: domainSeparatorHex, hashStructMessageHex: hashStructMessageHex) { response in
                 continuation.resume(returning: response)
             } failure: { error in
-                continuation.resume(throwing: BleTransportError.lowerLevelError(description: error))
+                continuation.resume(throwing: error)
             }
         }
     }
