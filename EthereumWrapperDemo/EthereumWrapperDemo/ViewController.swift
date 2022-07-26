@@ -36,7 +36,7 @@ class ViewController: UIViewController {
         self.getAddressButton.isEnabled = false
         self.openAppButton.isEnabled = false
         
-        BleTransport.shared.create(timeout: .seconds(5)) {
+        BleTransport.shared.create(scanDuration: 5.0) {
             print("Device disconnected")
         } success: { connectedPeripheral in
             self.connectionLabel.text = "Connected to \(connectedPeripheral.name)"
@@ -76,7 +76,7 @@ class ViewController: UIViewController {
                 try await eth.openAppIfNeeded()
                 print("Opened Ethereum!")
             } catch {
-                print("\((error as? BleTransportError)?.description() ?? "Failed with no error")")
+                print(error.localizedDescription)
             }
         }
     }
