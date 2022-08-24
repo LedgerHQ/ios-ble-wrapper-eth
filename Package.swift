@@ -15,14 +15,12 @@ let package = Package(
             targets: ["EthWrapper"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/LedgerHQ/hw-transport-ios-ble", branch: "main"),
-        .package(url: "https://github.com/LedgerHQ/ios-ble-wrapper", branch: "main"),
+        .package(url: "https://github.com/LedgerHQ/ios-ble-wrapper", branch: "CoreBluetooth"),
     ],
     targets: [
         .target(
             name: "EthWrapper",
-            dependencies: [.product(name: "BleTransport", package: "hw-transport-ios-ble"),
-                           .product(name: "BleWrapper", package: "ios-ble-wrapper")],
+            dependencies: [.product(name: "BleWrapper", package: "ios-ble-wrapper")],
             resources: [.copy("JavaScript/bundle.js")]),
         .testTarget(
             name: "EthWrapperTests",
