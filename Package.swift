@@ -15,7 +15,7 @@ let package = Package(
             targets: ["EthWrapper"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/LedgerHQ/hw-transport-ios-ble", branch: "main"),
+        .package(url: "https://github.com/LedgerHQ/hw-transport-ios-ble", branch: "disable-background-error"),
         .package(url: "https://github.com/LedgerHQ/ios-ble-wrapper", branch: "main"),
     ],
     targets: [
