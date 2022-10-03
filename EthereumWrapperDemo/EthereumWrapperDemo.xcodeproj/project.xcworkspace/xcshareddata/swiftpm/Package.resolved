@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/LedgerHQ/hw-transport-ios-ble",
       "state" : {
-        "branch" : "CoreBluetooth",
-        "revision" : "e3f16e99085bc92b308a4ce4883478614ad6c54d"
+        "revision" : "935a680a0f84a4e468c2f9baf8f949246c66884c",
+        "version" : "1.0.0"
       }
     },
     {
@@ -14,8 +14,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/LedgerHQ/ios-ble-wrapper",
       "state" : {
-        "branch" : "CoreBluetooth",
-        "revision" : "6681c5d94be93cb2d45585c0a9ea1bf3031f9c6f"
+        "revision" : "61029276d7ad03b9add7641c9510fb99d711f09d",
+        "version" : "1.0.0"
       }
     }
   ],
