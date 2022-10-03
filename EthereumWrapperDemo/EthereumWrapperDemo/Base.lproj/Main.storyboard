@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="EthereumWrapperDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connecting..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="diZ-bw-5tq">
+                                <rect key="frame" x="20" y="104" width="374" height="27.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cep-zk-9oA">
+                                <rect key="frame" x="97" y="203.5" width="220" height="38"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Get App Configuration">
+                                            <attributes>
+                                                <font key="NSFont" metaFont="system" size="20"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="getAppConfigurationButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Rw9-Ob-Iaz"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="32X-mH-VXj">
+                                <rect key="frame" x="140.5" y="281.5" width="133" height="38"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Get Address">
+                                            <attributes>
+                                                <font key="NSFont" metaFont="system" size="20"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="getAddressButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ED8-0i-HJo"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Waiting for response..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9tU-0N-lvq">
+                                <rect key="frame" x="20" y="538" width="374" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bi1-wq-fKu">
+                                <rect key="frame" x="130.5" y="811" width="153" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Open Ethereum app"/>
+                                <connections>
+                                    <action selector="openAppButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Nm7-0Y-HLJ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Bi1-wq-fKu" secondAttribute="bottom" constant="20" id="0Bf-AE-LQt"/>
+                            <constraint firstItem="9tU-0N-lvq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="HnB-6d-1P4"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9tU-0N-lvq" secondAttribute="trailing" constant="20" id="IPX-Xq-Qrj"/>
+                            <constraint firstItem="diZ-bw-5tq" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="60" id="bNJ-7H-Qzy"/>
+                            <constraint firstItem="32X-mH-VXj" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="cr8-BZ-Wzw"/>
+                            <constraint firstItem="diZ-bw-5tq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="gCg-mt-K6y"/>
+                            <constraint firstItem="32X-mH-VXj" firstAttribute="top" secondItem="Cep-zk-9oA" secondAttribute="bottom" constant="40" id="jYD-8B-lGj"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="diZ-bw-5tq" secondAttribute="trailing" constant="20" id="mpR-mg-Xs2"/>
+                            <constraint firstItem="Cep-zk-9oA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ncw-IL-mlp"/>
+                            <constraint firstItem="Bi1-wq-fKu" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tAQ-lF-szE"/>
+                            <constraint firstItem="9tU-0N-lvq" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="100" id="yqY-xa-bGt"/>
+                            <constraint firstItem="Cep-zk-9oA" firstAttribute="top" secondItem="diZ-bw-5tq" secondAttribute="bottom" constant="72" id="zuV-Dw-cmz"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="connectionLabel" destination="diZ-bw-5tq" id="PB1-xi-jDd"/>
+                        <outlet property="getAddressButton" destination="32X-mH-VXj" id="x6Z-ZW-WQF"/>
+                        <outlet property="getAppConfigurationButton" destination="Cep-zk-9oA" id="FkU-x9-YKP"/>
+                        <outlet property="openAppButton" destination="Bi1-wq-fKu" id="l6Q-Lp-NNi"/>
+                        <outlet property="waitingForResponseLabel" destination="9tU-0N-lvq" id="mGn-Zj-VlA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="122" y="102"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

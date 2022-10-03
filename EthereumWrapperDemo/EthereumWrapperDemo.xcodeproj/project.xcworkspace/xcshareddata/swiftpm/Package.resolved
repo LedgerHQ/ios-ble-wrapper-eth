@@ -1,0 +1,23 @@
+{
+  "pins" : [
+    {
+      "identity" : "hw-transport-ios-ble",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/LedgerHQ/hw-transport-ios-ble",
+      "state" : {
+        "revision" : "935a680a0f84a4e468c2f9baf8f949246c66884c",
+        "version" : "1.0.0"
+      }
+    },
+    {
+      "identity" : "ios-ble-wrapper",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/LedgerHQ/ios-ble-wrapper",
+      "state" : {
+        "revision" : "61029276d7ad03b9add7641c9510fb99d711f09d",
+        "version" : "1.0.0"
+      }
+    }
+  ],
+  "version" : 2
+}
