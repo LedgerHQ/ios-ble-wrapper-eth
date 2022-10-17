@@ -23,12 +23,19 @@ class ViewController: UIViewController {
     
     let eth = EthWrapper()
     
+    var created = false
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         connectionLabel.text = "Connecting..."
         
-        create(success: nil, failure: nil)
+        BleTransport.shared.bluetoothAvailabilityCallback { availability in
+            if !self.created && availability {
+                self.created = true
+                self.create(success: nil, failure: nil)
+            }
+        }
     }
     
     func create(success: EmptyResponse?, failure: ErrorResponse?) {

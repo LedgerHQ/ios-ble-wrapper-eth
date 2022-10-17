@@ -91,8 +91,8 @@ public class EthWrapper: BleWrapper {
         }, failure: failure)
     }
     
-    public func signTransaction(path: String, rawTxHex: String, success: @escaping DictionaryResponse, failure: @escaping ErrorResponse) {
-        invokeMethod(.signTransaction, arguments: [path, rawTxHex], success: { resolve in
+    public func signTransaction(path: String, rawTxHex: String, resolution: LedgerEthTransactionResolution, success: @escaping DictionaryResponse, failure: @escaping ErrorResponse) {
+        invokeMethod(.signTransaction, arguments: [path, rawTxHex, resolution.toDictionary()], success: { resolve in
             if let dict = resolve.toDictionary() {
                 success(dict)
             } else {
@@ -161,9 +161,9 @@ extension EthWrapper {
         }
     }
     
-    public func signTransaction(path: String, rawTxHex: String) async throws -> [AnyHashable: Any] {
+    public func signTransaction(path: String, rawTxHex: String, resolution: LedgerEthTransactionResolution) async throws -> [AnyHashable: Any] {
         return try await withCheckedThrowingContinuation { continuation in
-            signTransaction(path: path, rawTxHex: rawTxHex) { response in
+            signTransaction(path: path, rawTxHex: rawTxHex, resolution: resolution) { response in
                 continuation.resume(returning: response)
             } failure: { error in
                 continuation.resume(throwing: error)
@@ -189,5 +189,24 @@ extension EthWrapper {
                 continuation.resume(throwing: error)
             }
         }
+    }
+}
+
+public struct LedgerEthTransactionResolution {
+    let erc20Tokens: [String]
+    let nfts: [String]
+    let externalPlugin: [(payload: String, signature: String)]
+    let plugin: [String]
+    
+    public init(erc20Tokens: [String], nfts: [String], externalPlugin: [(payload: String, signature: String)], plugin: [String]) {
+        self.erc20Tokens = erc20Tokens
+        self.nfts = nfts
+        self.externalPlugin = externalPlugin
+        self.plugin = plugin
+    }
+    
+    func toDictionary() -> [String: Any] {
+        let externalPluginDictionary = externalPlugin.map({ ["payload": $0.payload, "signature": $0.signature] })
+        return ["erc20Tokens": erc20Tokens, "nfts": nfts, "externalPlugin": externalPluginDictionary, "plugin": plugin];
     }
 }
