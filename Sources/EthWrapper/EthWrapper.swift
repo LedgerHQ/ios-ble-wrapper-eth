@@ -93,7 +93,7 @@ public class EthWrapper: BleWrapper {
     
     public func signTransaction(path: String, rawTxHex: String, resolution: LedgerEthTransactionResolution?, success: @escaping DictionaryResponse, failure: @escaping ErrorResponse) {
         var arguments: [Any] = [path, rawTxHex]
-        if let resolution {
+        if let resolution = resolution {
             arguments.append(resolution.toDictionary())
         }
         invokeMethod(.signTransaction, arguments: arguments, success: { resolve in
