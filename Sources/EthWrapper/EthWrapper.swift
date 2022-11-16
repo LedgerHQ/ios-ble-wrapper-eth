@@ -195,22 +195,3 @@ extension EthWrapper {
         }
     }
 }
-
-public struct LedgerEthTransactionResolution {
-    let erc20Tokens: [String]
-    let nfts: [String]
-    let externalPlugin: [(payload: String, signature: String)]
-    let plugin: [String]
-    
-    public init(erc20Tokens: [String], nfts: [String], externalPlugin: [(payload: String, signature: String)], plugin: [String]) {
-        self.erc20Tokens = erc20Tokens
-        self.nfts = nfts
-        self.externalPlugin = externalPlugin
-        self.plugin = plugin
-    }
-    
-    func toDictionary() -> [String: Any] {
-        let externalPluginDictionary = externalPlugin.map({ ["payload": $0.payload, "signature": $0.signature] })
-        return ["erc20Tokens": erc20Tokens, "nfts": nfts, "externalPlugin": externalPluginDictionary, "plugin": plugin];
-    }
-}
