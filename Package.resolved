@@ -14,8 +14,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/LedgerHQ/ios-ble-wrapper",
       "state" : {
-        "revision" : "39ee35508caf3408416eec8a566008c4532d1640",
-        "version" : "1.0.1"
+        "branch" : "main",
+        "revision" : "39ee35508caf3408416eec8a566008c4532d1640"
       }
     }
   ],

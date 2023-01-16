@@ -15,7 +15,7 @@ let package = Package(
             targets: ["EthWrapper"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/LedgerHQ/ios-ble-wrapper", exact: "1.0.1"),
+        .package(url: "https://github.com/LedgerHQ/ios-ble-wrapper", branch: "main"),
     ],
     targets: [
         .target(
