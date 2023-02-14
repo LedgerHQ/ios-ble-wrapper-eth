@@ -60,7 +60,7 @@ public class EthWrapper: BleWrapper {
     
     fileprivate func loadInstance() {
         guard let module = jsContext.objectForKeyedSubscript("TransportModule") else { return }
-        guard let transportModule = module.objectForKeyedSubscript("TransportBLEiOS") else { return }
+        guard let transportModule = module.objectForKeyedSubscript("TransportBLESwift") else { return }
         guard let transportInstance = transportModule.construct(withArguments: []) else { return }
         guard let ethModule = module.objectForKeyedSubscript("Eth") else { return }
         ethInstance = ethModule.construct(withArguments: [transportInstance])
