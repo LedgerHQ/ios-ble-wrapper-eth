@@ -7,9 +7,9 @@ Whenever there's a change in the Eth app binding or the wrapper, `bundle.js` has
 ### How to generate `bundle.js`
 
 1. Clone the [monorepo](https://github.com/ledgerhq/ledger-live) and compile the libraries using `pnpm build:libs`
-2. cd into `Sources/EthWrapper/JavaScript`
-2. Use [webpack](https://webpack.js.org) to wrap everything needed for `JavaScriptCore` to run the binding and put it into the `JavaScript` folder inside the Package (should replace the current `bundle.js`) using the following command:
+2. Run the following commands in `Sources/EthWrapper/JavaScript`:
 
 ```
-webpack --entry "<path_to_monorepo>/ledger-live/libs/ledgerjs/iOS-wrappers/ios-wrapper-eth/lib/Wrapper.js"
+pnpm i
+pnpm build --entry "<path_to_monorepo>/ledger-live/libs/ledgerjs/packages/swift-bridge-hw-app-eth/lib/Wrapper.js"
 ```
