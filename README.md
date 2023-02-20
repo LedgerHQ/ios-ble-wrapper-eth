@@ -13,3 +13,17 @@ Whenever there's a change in the Eth app binding or the wrapper, `bundle.js` has
 pnpm i
 pnpm build --entry "<path_to_monorepo>/ledger-live/libs/ledgerjs/packages/swift-bridge-hw-app-eth/lib/Wrapper.js"
 ```
+For example:
+
+```
+cd ~
+git clone https://github.com/LedgerHQ/ledger-live.git
+cd ledger-live
+pnpm i && pnpm build:libs
+
+cd ~
+git clone https://github.com/LedgerHQ/ios-ble-wrapper-eth.git
+cd ios-ble-wrapper-eth/Sources/EthWrapper/JavaScript
+pnpm i
+pnpm build --entry "~/ledger-live/libs/ledgerjs/packages/swift-bridge-hw-app-eth/lib/Wrapper.js"
+```
