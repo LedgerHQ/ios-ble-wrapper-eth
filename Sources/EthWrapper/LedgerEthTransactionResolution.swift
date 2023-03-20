@@ -13,20 +13,17 @@ public struct ExternalPluginData: Decodable, Equatable {
 }
 
 public struct LedgerEthTransactionResolution: Decodable {
-    public let erc20Tokens: [String]
-    public let nfts: [String]
-    public let externalPlugin: [ExternalPluginData]
-    public let plugin: [String]
+    public let erc20Tokens: Bool
+    public let nfts: Bool
+    public let externalPlugin: Bool
     
-    public init(erc20Tokens: [String], nfts: [String], externalPlugin: [ExternalPluginData], plugin: [String]) {
+    public init(erc20Tokens: Bool, nfts: Bool, externalPlugin: Bool) {
         self.erc20Tokens = erc20Tokens
         self.nfts = nfts
         self.externalPlugin = externalPlugin
-        self.plugin = plugin
     }
     
     func toDictionary() -> [String: Any] {
-        let externalPluginDictionary = externalPlugin.map({ ["payload": $0.payload, "signature": $0.signature] })
-        return ["erc20Tokens": erc20Tokens, "nfts": nfts, "externalPlugin": externalPluginDictionary, "plugin": plugin];
+        return ["erc20Tokens": erc20Tokens, "nfts": nfts, "externalPlugin": externalPlugin];
     }
 }

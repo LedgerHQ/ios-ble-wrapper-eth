@@ -91,10 +91,10 @@ public class EthWrapper: BleWrapper {
         }, failure: failure)
     }
     
-    public func signTransaction(path: String, rawTxHex: String, resolution: LedgerEthTransactionResolution?, success: @escaping DictionaryResponse, failure: @escaping ErrorResponse) {
+    public func signTransaction(path: String, rawTxHex: String, option: LedgerEthTransactionResolution?, success: @escaping DictionaryResponse, failure: @escaping ErrorResponse) {
         var arguments: [Any] = [path, rawTxHex]
-        if let resolution = resolution {
-            arguments.append(resolution.toDictionary())
+        if let option = option {
+            arguments.append(option.toDictionary())
         }
         invokeMethod(.signTransaction, arguments: arguments, success: { resolve in
             if let dict = resolve.toDictionary() {
@@ -165,9 +165,9 @@ extension EthWrapper {
         }
     }
     
-    public func signTransaction(path: String, rawTxHex: String, resolution: LedgerEthTransactionResolution?) async throws -> [AnyHashable: Any] {
+    public func signTransaction(path: String, rawTxHex: String, option: LedgerEthTransactionResolution?) async throws -> [AnyHashable: Any] {
         return try await withCheckedThrowingContinuation { continuation in
-            signTransaction(path: path, rawTxHex: rawTxHex, resolution: resolution) { response in
+            signTransaction(path: path, rawTxHex: rawTxHex, option: option) { response in
                 continuation.resume(returning: response)
             } failure: { error in
                 continuation.resume(throwing: error)
