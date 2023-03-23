@@ -8,17 +8,17 @@
 import Foundation
 
 public struct ResolutionConfig: Decodable {
-    public let erc20Tokens: Bool
-    public let nfts: Bool
-    public let externalPlugin: Bool
+    public let erc20: Bool
+    public let externalPlugins: Bool
+    public let nft: Bool
     
-    public init(erc20Tokens: Bool, nfts: Bool, externalPlugin: Bool) {
-        self.erc20Tokens = erc20Tokens
-        self.nfts = nfts
-        self.externalPlugin = externalPlugin
+    public init(erc20: Bool, externalPlugins: Bool, nft: Bool) {
+        self.erc20 = erc20
+        self.externalPlugins = externalPlugins
+        self.nft = nft
     }
     
     func toDictionary() -> [String: Any] {
-        return ["erc20Tokens": erc20Tokens, "nfts": nfts, "externalPlugin": externalPlugin];
+        return ["erc20": erc20, "externalPlugins": externalPlugins, "nft": nft];
     }
 }
