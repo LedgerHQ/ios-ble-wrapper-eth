@@ -17,6 +17,7 @@ public class EthWrapper: BleWrapper {
         case signTransaction = "signTransaction"
         case signPersonalMessage = "signPersonalMessage"
         case signEIP712HashedMessage = "signEIP712HashedMessage"
+        case clearSignTransaction = "clearSignTransaction"
     }
     
     lazy var jsContext: JSContext = {
@@ -105,6 +106,20 @@ public class EthWrapper: BleWrapper {
         }, failure: failure)
     }
     
+    public func signTransaction(path: String, rawTxHex: String, resolutionConfig: ResolutionConfig?, success: @escaping DictionaryResponse, failure: @escaping ErrorResponse) {
+        var arguments: [Any] = [path, rawTxHex]
+        if let resolutionConfig = resolutionConfig {
+            arguments.append(resolutionConfig.toDictionary())
+        }
+        invokeMethod(.clearSignTransaction, arguments: arguments, success: { resolve in
+            if let dict = resolve.toDictionary() {
+                success(dict)
+            } else {
+                failure(BleTransportError.lowerLevelError(description: "clearSignTransaction -> resolved but couldn't parse"))
+            }
+        }, failure: failure)
+    }
+    
     public func signPersonalMessage(path: String, messageHex: String, success: @escaping DictionaryResponse, failure: @escaping ErrorResponse) {
         invokeMethod(.signPersonalMessage, arguments: [path, messageHex], success: { resolve in
             if let dict = resolve.toDictionary() {
@@ -188,6 +203,16 @@ extension EthWrapper {
     public func signEIP712HashedMessage(path: String, domainSeparatorHex: String, hashStructMessageHex: String) async throws -> [AnyHashable: Any] {
         return try await withCheckedThrowingContinuation { continuation in
             signEIP712HashedMessage(path: path, domainSeparatorHex: domainSeparatorHex, hashStructMessageHex: hashStructMessageHex) { response in
+                continuation.resume(returning: response)
+            } failure: { error in
+                continuation.resume(throwing: error)
+            }
+        }
+    }
+    
+    public func signTransaction(path: String, rawTxHex: String, resolutionConfig: ResolutionConfig?) async throws -> [AnyHashable: Any] {
+        return try await withCheckedThrowingContinuation { continuation in
+            signTransaction(path: path, rawTxHex: rawTxHex, resolutionConfig: resolutionConfig) { response in
                 continuation.resume(returning: response)
             } failure: { error in
                 continuation.resume(throwing: error)
