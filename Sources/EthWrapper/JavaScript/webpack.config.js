@@ -3,6 +3,9 @@ const path = require("path");
 
 module.exports = {
   mode: "production",
+  // optimization: {
+  //   minimize: false
+  // },
   output: {
     filename: "bundle.js",
     library: "TransportModule",
@@ -16,6 +19,6 @@ module.exports = {
   plugins: [
     new webpack.ProvidePlugin({
       Buffer: ["buffer", "Buffer"],
-    }),
+    })
   ],
 };

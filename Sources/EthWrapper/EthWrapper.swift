@@ -24,6 +24,15 @@ public class EthWrapper: BleWrapper {
         let jsContext = JSContext()
         guard let jsContext = jsContext else { fatalError("jsContext is nil") }
         
+        // Add a 'console' object with a 'log' and 'error' function into the jsContext
+        Console.registerInto(jsContext: jsContext)
+        
+        // Register 'setTimeout'-like functions into the jsContext
+        TimerJS.registerInto(jsContext: jsContext)
+        
+        // Add XHR Requests into the jsContext
+        XMLHttpRequest.registerInto(jsContext: jsContext)
+        
         guard let commonJSPath = Bundle.module.path(forResource: "bundle", ofType: "js") else {
             fatalError("Unable to read resource files.")
         }
@@ -110,6 +119,7 @@ public class EthWrapper: BleWrapper {
         var arguments: [Any] = [path, rawTxHex]
         if let resolutionConfig = resolutionConfig {
             arguments.append(resolutionConfig.toDictionary())
+            arguments.append(true)
         }
         invokeMethod(.clearSignTransaction, arguments: arguments, success: { resolve in
             if let dict = resolve.toDictionary() {

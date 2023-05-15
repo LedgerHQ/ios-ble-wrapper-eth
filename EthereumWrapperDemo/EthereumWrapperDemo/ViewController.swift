@@ -19,7 +19,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var openAppButton: UIButton!
     
     let DERIVATION_PATH_ETH = "44'/60'/0'/0/0"
-    let RAW_TX_HEX_TEST = "02f90115010384773594008518abb54a008302ceed94def171fe48cf0115b1d80b88dc8eab59176fee5787084701707a11e7b8e4b2f1e6db000000000000000000000000eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee00000000000000000000000000000000000000000000000000084701707a11e700000000000000000000000000000000000000000000000029a2241af62c0000000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc200000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000001000000000000000000004de4bf58a4077c71b5699bd19287eb76beaba5361bbfc0"
+    let RAW_TX_HEX_TEST = "02f90108010180808094def171fe48cf0115b1d80b88dc8eab59176fee578609184e72a000b8e40b86a4c1000000000000000000000000eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee000000000000000000000000000000000000000000000000000009184e72a000000000000000000000000000000000000000000000000000004340cbb4c03c9a000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc200000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000001000000000000000000004de58faf958e36c6970497386118030e6297fff8d275c0"
     
     let eth = EthWrapper()
     
@@ -54,6 +54,18 @@ class ViewController: UIViewController {
             success?()
         } failure: { error in
             failure?(error)
+        }
+    }
+    
+    
+    @IBAction func signTransaction(_ sender: Any) {
+        waitingForResponseLabel.text = "Signing a Transaction..."
+        let resolutionConfig = ResolutionConfig(erc20: true, externalPlugins: true, nft: true)
+        eth.signTransaction(path:DERIVATION_PATH_ETH, rawTxHex: RAW_TX_HEX_TEST, resolutionConfig: resolutionConfig) { response in
+            guard let dict = response as? [String: AnyObject] else { fatalError("Can't parse") }
+            self.waitingForResponseLabel.text = "\(dict)"
+        } failure: { error in
+            self.waitingForResponseLabel.text = "ERROR: \(error)"
         }
     }
     
