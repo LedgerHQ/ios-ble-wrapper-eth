@@ -27,8 +27,8 @@ public class EthWrapper: BleWrapper {
         // Add a 'console' object with a 'log' and 'error' function into the jsContext
         Console.registerInto(jsContext: jsContext)
         
-        // Register 'setTimeout'-like functions into the jsContext
-        TimerJS.registerInto(jsContext: jsContext)
+        // Add 'setTimeout'-like functions into the jsContext
+        Timeout.registerInto(jsContext: jsContext)
         
         // Add XHR Requests into the jsContext
         XMLHttpRequest.registerInto(jsContext: jsContext)
