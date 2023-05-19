@@ -3,6 +3,7 @@ const path = require("path");
 
 module.exports = {
   mode: "production",
+  // Uncomment the following line to debug the bundle
   // optimization: {
   //   minimize: false
   // },
@@ -19,6 +20,6 @@ module.exports = {
   plugins: [
     new webpack.ProvidePlugin({
       Buffer: ["buffer", "Buffer"],
-    })
+    }),
   ],
 };

@@ -119,7 +119,6 @@ public class EthWrapper: BleWrapper {
         var arguments: [Any] = [path, rawTxHex]
         if let resolutionConfig = resolutionConfig {
             arguments.append(resolutionConfig.toDictionary())
-            arguments.append(true)
         }
         invokeMethod(.clearSignTransaction, arguments: arguments, success: { resolve in
             if let dict = resolve.toDictionary() {
