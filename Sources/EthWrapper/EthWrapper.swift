@@ -24,6 +24,15 @@ public class EthWrapper: BleWrapper {
         let jsContext = JSContext()
         guard let jsContext = jsContext else { fatalError("jsContext is nil") }
         
+        // Add a 'console' object with a 'log' and 'error' function into the jsContext
+        Console.registerInto(jsContext: jsContext)
+        
+        // Add 'setTimeout'-like functions into the jsContext
+        Timeout.registerInto(jsContext: jsContext)
+        
+        // Add XHR Requests into the jsContext
+        XMLHttpRequest.registerInto(jsContext: jsContext)
+        
         guard let commonJSPath = Bundle.module.path(forResource: "bundle", ofType: "js") else {
             fatalError("Unable to read resource files.")
         }
