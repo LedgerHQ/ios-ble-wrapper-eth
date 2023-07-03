@@ -7,24 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		930EEE852875DCBB0002BBF0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930EEE842875DCBB0002BBF0 /* AppDelegate.swift */; };
-		930EEE872875DCBB0002BBF0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930EEE862875DCBB0002BBF0 /* SceneDelegate.swift */; };
-		930EEE892875DCBB0002BBF0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930EEE882875DCBB0002BBF0 /* ViewController.swift */; };
-		930EEE8C2875DCBB0002BBF0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 930EEE8A2875DCBB0002BBF0 /* Main.storyboard */; };
+		846618292A4ECA8D00EEEAFE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846618282A4ECA8D00EEEAFE /* ContentView.swift */; };
+		846618622A4ECB4A00EEEAFE /* DemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846618612A4ECB4A00EEEAFE /* DemoApp.swift */; };
+		846618642A4ED97F00EEEAFE /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846618632A4ED97F00EEEAFE /* DeviceManager.swift */; };
+		846618662A4ED99500EEEAFE /* LogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846618652A4ED99500EEEAFE /* LogManager.swift */; };
+		846618682A4EDC0800EEEAFE /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846618672A4EDC0800EEEAFE /* ButtonView.swift */; };
+		8466186A2A4EDC4D00EEEAFE /* DelayedAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846618692A4EDC4D00EEEAFE /* DelayedAnimation.swift */; };
 		930EEE8E2875DCBC0002BBF0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 930EEE8D2875DCBC0002BBF0 /* Assets.xcassets */; };
-		930EEE912875DCBC0002BBF0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 930EEE8F2875DCBC0002BBF0 /* LaunchScreen.storyboard */; };
 		935C9E2728F76F51003AB05C /* EthWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 935C9E2628F76F51003AB05C /* EthWrapper */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		846618282A4ECA8D00EEEAFE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		846618612A4ECB4A00EEEAFE /* DemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoApp.swift; sourceTree = "<group>"; };
+		846618632A4ED97F00EEEAFE /* DeviceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManager.swift; sourceTree = "<group>"; };
+		846618652A4ED99500EEEAFE /* LogManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogManager.swift; sourceTree = "<group>"; };
+		846618672A4EDC0800EEEAFE /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
+		846618692A4EDC4D00EEEAFE /* DelayedAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelayedAnimation.swift; sourceTree = "<group>"; };
 		930EEE812875DCBB0002BBF0 /* EthereumWrapperDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EthereumWrapperDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		930EEE842875DCBB0002BBF0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		930EEE862875DCBB0002BBF0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		930EEE882875DCBB0002BBF0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		930EEE8B2875DCBB0002BBF0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		930EEE8D2875DCBC0002BBF0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		930EEE902875DCBC0002BBF0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		930EEE922875DCBC0002BBF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		930EEE992875DCDC0002BBF0 /* EthereumWrapper */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = EthereumWrapper; path = ..; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -61,13 +62,13 @@
 		930EEE832875DCBB0002BBF0 /* EthereumWrapperDemo */ = {
 			isa = PBXGroup;
 			children = (
-				930EEE842875DCBB0002BBF0 /* AppDelegate.swift */,
-				930EEE862875DCBB0002BBF0 /* SceneDelegate.swift */,
-				930EEE882875DCBB0002BBF0 /* ViewController.swift */,
-				930EEE8A2875DCBB0002BBF0 /* Main.storyboard */,
+				846618612A4ECB4A00EEEAFE /* DemoApp.swift */,
+				846618282A4ECA8D00EEEAFE /* ContentView.swift */,
+				846618652A4ED99500EEEAFE /* LogManager.swift */,
+				846618632A4ED97F00EEEAFE /* DeviceManager.swift */,
+				846618672A4EDC0800EEEAFE /* ButtonView.swift */,
+				846618692A4EDC4D00EEEAFE /* DelayedAnimation.swift */,
 				930EEE8D2875DCBC0002BBF0 /* Assets.xcassets */,
-				930EEE8F2875DCBC0002BBF0 /* LaunchScreen.storyboard */,
-				930EEE922875DCBC0002BBF0 /* Info.plist */,
 			);
 			path = EthereumWrapperDemo;
 			sourceTree = "<group>";
@@ -148,9 +149,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				930EEE912875DCBC0002BBF0 /* LaunchScreen.storyboard in Resources */,
 				930EEE8E2875DCBC0002BBF0 /* Assets.xcassets in Resources */,
-				930EEE8C2875DCBB0002BBF0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -161,32 +160,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				930EEE892875DCBB0002BBF0 /* ViewController.swift in Sources */,
-				930EEE852875DCBB0002BBF0 /* AppDelegate.swift in Sources */,
-				930EEE872875DCBB0002BBF0 /* SceneDelegate.swift in Sources */,
+				846618662A4ED99500EEEAFE /* LogManager.swift in Sources */,
+				8466186A2A4EDC4D00EEEAFE /* DelayedAnimation.swift in Sources */,
+				846618642A4ED97F00EEEAFE /* DeviceManager.swift in Sources */,
+				846618682A4EDC0800EEEAFE /* ButtonView.swift in Sources */,
+				846618292A4ECA8D00EEEAFE /* ContentView.swift in Sources */,
+				846618622A4ECB4A00EEEAFE /* DemoApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		930EEE8A2875DCBB0002BBF0 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				930EEE8B2875DCBB0002BBF0 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		930EEE8F2875DCBC0002BBF0 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				930EEE902875DCBC0002BBF0 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		930EEE932875DCBC0002BBF0 /* Debug */ = {
@@ -312,14 +295,12 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = X6LFS5BQKN;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = EthereumWrapperDemo/Info.plist;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Bluetooth will be used to connect to your devices";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -327,6 +308,9 @@
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ledger.ethereum-wrapper-demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -342,14 +326,12 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = X6LFS5BQKN;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = EthereumWrapperDemo/Info.plist;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Bluetooth will be used to connect to your devices";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -357,6 +339,9 @@
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ledger.ethereum-wrapper-demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
