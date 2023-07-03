@@ -45,11 +45,11 @@ class DeviceManager: ObservableObject {
     }
 
     func signTransaction() {
-        logManager?.addToLog("Signing a Transaction...")
+        logManager?.addToLog("Signing transaction...")
         let resolutionConfig = ResolutionConfig(erc20: true, externalPlugins: true, nft: true)
         eth.signTransaction(path: DERIVATION_PATH_ETH, rawTxHex: RAW_TX_HEX_TEST, resolutionConfig: resolutionConfig) { response in
             guard let dict = response as? [String: AnyObject] else { fatalError("Can't parse") }
-            self.logManager?.addToLog("\(dict)")
+            self.logManager?.addToLog("Transaction signed: \(dict)")
         } failure: { error in
             self.logManager?.addToLog("Error signing transaction: \(error)")
         }
