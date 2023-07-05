@@ -60,7 +60,6 @@ import JavaScriptCore
         guard let url = URL(string: url) else { return }
         request = URLRequest(url: url)
         request?.httpMethod = method
-        request?.cachePolicy = .reloadIgnoringLocalAndRemoteCacheData
     }
 
     func send(_ data: String?) {
