@@ -89,7 +89,7 @@ import JavaScriptCore
         task.resume()
     }
 
-    func fail(with error: String) {
+    private func fail(with error: String) {
         status = 0
         statusText = error
         onerror?.call(withArguments: [])
